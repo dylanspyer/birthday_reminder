@@ -1,0 +1,37 @@
+<h1>Add a new birthday</h1>
+
+<form method="post" action="/<%= @username %>/add_birthday">
+  <div>
+    <label for="birthday_name">Name:
+      <input name="birthday_name" id="birthday_name" value="<%= @birthday_name %>"/>
+    </label>
+  </div>
+  <div>
+    <label for="birthday_date"> Birthday Date:
+      <input type="date" id="birthday_date" name="birthday_date" value="<%= @birth_date %>"/>
+    </label>
+  </div>
+  <div>
+    <h3>Interests:</h3>
+    <div>
+      <label for="interest1"> Interest 1:
+        <input type="interest1" id="interest1" name="interest1"/>
+      </label>
+    </div>
+    <div>
+      <label for="interest2"> Interest 2:
+        <input type="interest2" id="interest2" name="interest2"/>
+      </label>
+    </div>
+    <div>
+      <label for="interest3"> Interest 3:
+        <input type="interest3" id="interest3" name="interest3"/>
+      </label>
+    </div>
+  </div>
+  <button type="submit">Add birthday</button>
+</form>
+
+<form method="get" action="/<%= params[:username]%>/home">
+  <button type="submit">Home</button>
+</form>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Calendar</title>
+    <style>
+        /* Calendar styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            background-color: #fff;
+        }
+    </style>
+</head>
+  <body>
+    <h1><%= @month %> <%= @year %> Calendar</h1>
+      <table>
+          <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+          </tr>
+
+          <tr>
+            <% month_number = MONTH_NUM_HASH[@month] %>
+            <% start_day = first_day_of_month(@year, month_number) %>
+            <% count = first_day_of_month(@year, month_number)  %>
+            <% day = 1 %>
+
+            <% (days_in_month(month_number, @year) + start_day).times do |date| %>
+              <% if date < start_day %>
+                <td></td>
+              <% else%>
+                <% birthday_hsh = @this_month_birthdays.select {|name, birthday_day| day == birthday_day } %>
+                <% if birthday_hsh.empty? %>
+                  <td><%= day %></td>
+                <% else %>
+                  <td>
+                    <%= day %>
+                    <% @this_month_birthdays.select { |name, bday| bday == day }.each do |name, bday| %>
+                      <a href="/<%= params[:username] %>/<%= name %>"><%= display_formatted_name(name) %></a>
+                    <% end %>
+                  </td>
+              <% end %>
+                <% count += 1 %>
+                <% day += 1 %>
+                <% if count == 7 %>
+                  <tr></tr>
+                <% count = 0 %> 
+                <% end %>
+              <% end %>
+            <% end %>
+          </tr>
+        
+      </table>
+    <form method="get" action="/<%= params[:username]%>/home">
+      <button type="submit">Home</button>
+    </form>
+  </body>
+</html>

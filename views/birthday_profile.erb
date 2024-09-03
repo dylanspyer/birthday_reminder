@@ -1,0 +1,39 @@
+<h1><%= display_formatted_name(@name) %><h1>
+<h2>Birthdate: <%= @birthdate %></h2>
+<h3>Interests:<h3>
+  <ul>
+  <% if @interests_array %>
+    <% sort_interests_alphabetically(@interests_array).each do |interest| %>
+      <form method="post" action="/<%= @username %>/<%= @name %>/delete_interest">
+          <input type="hidden" name="delete_interest" value="<%= interest %>">
+          <li><%= interest %></li>
+        <button type="submit">Delete interest</button>
+      </form>
+    <% end %>
+  </ul>
+  <% end %>
+
+<form method="post" action="/<%= @username %>/<%= @name %>/add_interest"> 
+  <div>
+    <label for="new_interest"> Add Another Interest:
+      <input type="new_interest" id="new_interest" name="new_interest" value="<%= session.delete(:invalid_interest) %>"/>
+    </label>
+  </div>
+  <button type="submit">Submit New Interest</button>
+</form>
+
+<form method="get" action="/<%= params[:username]%>/home">
+  <button type="submit">Home</button>
+</form>
+
+<form method="get" action="/<%= @username %>/<%= session.delete(:month) %>/<%= session.delete(:year) %>/calendar">
+  <button type="submit">Back to Calendar</button>
+</form>
+
+<form method="get" action="/<%= @username %>/all_birthdays">
+  <button type="submit">Back to All Birthdays</button>
+</form>
+
+<form method="post" action="/<%= @username %>/<%= @birthday_person %>/delete">
+  <button type="submit">Delete this Person</button>
+</form>

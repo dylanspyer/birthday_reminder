@@ -1,0 +1,34 @@
+<p>What would you like to do today?</p>
+
+<ul>
+  <li><a href="/<%= @username %>/<%= @current_month %>/<%= @current_year %>/calendar">Look at this month's birthdays</a></li>
+  <li>Look at a different month's birthdays:</li>
+  <form method="get" action="/redirect_to_selected_calendar">
+    <select name="month">
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+      <input type="text" placeholder="year format 'xxxx'"  name="year"/>
+    </select>
+    <button type="submit">Choose Month and Year</button>
+  </form>
+  <li><a href="/<%= @username %>/add_birthday">Add a birthday</a></li>
+  <li><a href="/<%= @username %>/all_birthdays">Look at a list of all birthdays</a></li>
+</ul>
+
+<form method="post" action="/sign_out">
+  <button type="submit">Sign Out</button>
+</form>
+
+<form method="post" action="/<%= @username %>/delete_account">
+  <button type="submit">Delete My Account</button>
+</form>

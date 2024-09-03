@@ -1,0 +1,32 @@
+<ul>
+  <% parse_birthday_array_of_hashes(@birthdays) do |month, name, previous_month| %>
+    <% if month != previous_month %>
+      <h3><%= month %></h3>
+    <% end %>
+    
+    <li><a href="/<%= @username %>/<%= name %>"><%= display_formatted_name(name) %></a></li>
+  <% end %>
+</ul>
+
+<% if @previous_page > 0 %> 
+  <p><a href="<%= @previous_page %>">Previous</a></p>
+<% else %>
+  <p>Previous</p>
+<% end %>
+<% @pages.each do |page_number| %>
+  <% if page_number == @current_page%>
+    <p style="color:black">Page <%= page_number %></p>
+  <% else %>
+    <p style="color:blue"><a href="/<%= @username %>/all_birthdays/<%= page_number %>">Page <%= page_number %></a></p>
+  <% end %>
+<% end %>
+
+<% if @next_page <= @highest_page %> 
+  <p><a href="<%= @next_page %>">Next</a></p>
+<% else %>
+  <p>Next</p>
+<% end %>
+
+<form method="get" action="/<%= params[:username]%>/home">
+  <button type="submit">Home</button>
+</form>
