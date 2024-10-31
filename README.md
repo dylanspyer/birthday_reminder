@@ -24,13 +24,3 @@ The browser (including version number) that you used to test this application:
 
 The version of PostgreSQL you used to create any databases:
 -psql (14.8 (Homebrew))
-
-Any additional details the grader may need to run your code.
-
-- Specific project requirements:
-  - Pagination is displayed on the `Look at a list of all birthdays` url.
-  - Sorting is displayed on the `Look at a list of all birthdays` url and within any of the birthday people's interests (if applicable).
-
-Keep in mind that your grader may be unfamiliar with the problem domain. If you think that's a possibility, you may wish to add a brief discussion of the vocabulary and concepts used in the application:
-
-- This is an app to keep track of people's birthdays. Its true purpose to to keep me off of Facebook (the only reason I go on Facebook anymore is to keep track of birthdays!).
